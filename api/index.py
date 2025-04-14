@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def get_headers():
-    return request.headers
+    return dict(request.headers)
 
-# Required for Vercel's handler
-def handler(environ, start_response):
-    return app(environ, start_response)
+# 👇 This is the key line Vercel expects
+vercel_handler = app
